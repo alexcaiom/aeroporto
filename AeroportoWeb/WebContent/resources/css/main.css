@@ -1,0 +1,113 @@
+/* #topMessage {
+	vertical-align: middle;
+} */
+
+html {
+	overflow: hidden;
+}
+
+body {
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	height: 100%;
+}
+
+h1 {
+	color: black;
+}
+
+a:link,a:visited,a:hover,a:active {
+	color: black;	
+}
+
+.menuButton{
+	font-weight: bold;
+	font-size: 23px;
+	top:10px;
+	bottom: 10px;
+}
+
+#divTop {
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	height: 160px;
+	overflow: auto;
+	border: 1px solid darkGray;	
+}
+
+#divTop img {
+	height:120px;
+	width:120px;
+	margin:20px 50px;
+}
+
+#divTop form {
+	font-family:arial;
+  	height:80px;
+	margin:40px;
+}
+
+#divTop form b {
+	font-size:16px;
+  	font-weight:inherit;
+  	margin:10px;
+}
+
+#divLeft {
+	padding: 0;
+	padding-left: 10px;
+	margin: 0;
+	position: absolute;
+	top: 120px;
+	left: 10px;
+	bottom: 20px;
+	overflow: auto;
+	width: 250px;
+	border: thin solid lightGray;
+	background: #eeeeee;
+	font-size: 35px;
+}
+
+#divMain {
+	padding: 0;
+	padding-top: 10px;
+	margin: 0;
+	position: absolute;
+	top: 160px;
+	left: 0px;
+	right: 0px;
+	bottom: 20px;
+	overflow: auto;
+	font-size:15px;
+	text-align:center;
+}
+
+#divMain span {
+	font-size:20px;
+}
+
+#divMain button {
+	font-size:10px;
+}
+
+/*
+	Configuracao com menu Esquerdo
+ #divMain {
+	padding: 0;
+	padding-top: 10px;
+	margin: 0;
+	position: absolute;
+	top: 160px;
+	left: 280px;
+	right: 20px;
+	bottom: 20px;
+	overflow: auto;
+	border: thin solid lightGray;
+	background: #fefeef;
+} */

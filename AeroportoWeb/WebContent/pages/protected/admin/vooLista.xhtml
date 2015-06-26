@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="/pages/protected/templates/master.xhtml">
+		<ui:define name="divMain">
+			<h:form id="voosForm">
+			<font style="font-family: sans-serif; font-size: x-large;"><b>	Cadastro de V&ocirc;os </b></font>
+				<p:dataTable id="voosTable" value="#{vooMB.voos}" var="voo" emptyMessage="#{bundle.noRecords}" paginator="true" rows="5"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15" draggableColumns="true">
+					<p:column sortBy="#{voo.localOrigem}">
+						<f:facet name="header">
+							<h:outputText value="Origem" />
+						</f:facet>
+
+						<h:outputText value="#{voo.localOrigem}" />
+					</p:column>
+
+					<p:column sortBy="#{voo.dataSaida}">
+						<f:facet name="header">
+							<h:outputText value="Saída" />
+						</f:facet>
+
+						<h:outputText value="#{voo.dataSaida}" />
+					</p:column>
+
+					<p:column sortBy="#{voo.aviao.nome}">
+						<f:facet name="header">
+							<h:outputText value="Avião" />
+						</f:facet>
+						<h:outputText value="#{voo.aviao.nome}" />
+					</p:column>
+
+					<p:column sortBy="#{voo.localDestino}">
+						<f:facet name="header">
+							<h:outputText value="Destino" />
+						</f:facet>
+						<h:outputText value="#{voo.localDestino}" />
+					</p:column>
+
+					<p:column sortBy="#{voo.dataChegada}">
+						<f:facet name="header">
+							<h:outputText value="Chegada" />
+						</f:facet>
+						<h:outputText value="#{voo.dataChegada}" />
+					</p:column>
+					<p:column>
+						<p:commandButton value="#{bundle.detail}" icon="ui-icon-bullet" onclick="vooDetailDialogWidget.show();" update=":vooDetailDialogForm" >
+							<f:setPropertyActionListener target="#{vooMB.voo}" value="#{voo}" />
+						</p:commandButton> 
+						<p:spacer width="10px" />
+						<p:commandButton value="#{bundle.update}" icon="ui-icon-pencil" update=":vooUpdateDialogForm" onclick="vooUpdateDialogWidget.show();" >
+							<f:setPropertyActionListener target="#{vooMB.voo}" value="#{voo}" />
+						</p:commandButton>
+						<p:spacer width="10px" />
+						<p:commandButton value="#{bundle.delete}" icon="ui-icon-trash" update=":vooDeleteDialogForm" onclick="vooDeleteDialogWidget.show();" >
+							<f:setPropertyActionListener target="#{vooMB.voo}" value="#{voo}" />
+						</p:commandButton>
+					</p:column>
+
+				</p:dataTable>
+				<p:commandButton value="#{bundle.create}" icon="ui-icon-plus" update=":vooCreateDialogForm"
+					actionListener="#{vooMB.reset()}" onclick="vooCreateDialogWidget.show();" style="float:left;"/>
+			</h:form>
+
+			<ui:include src="/pages/protected/admin/dialogs/vooCreateDialog.xhtml" />
+			<ui:include src="/pages/protected/admin/dialogs/vooDetailDialog.xhtml" />
+			<ui:include src="/pages/protected/admin/dialogs/vooUpdateDialog.xhtml" />
+			<ui:include src="/pages/protected/admin/dialogs/vooDeleteDialog.xhtml" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

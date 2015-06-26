@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<p:dialog widgetVar="clienteCreateDialogWidget"
+		id="clienteCreateDialogId" height="150" width="500" modal="true"
+		closable="true" draggable="false" resizable="false" hideEffect="blind" showEffect="fade" >
+		<h:form id="clienteCreateDialogForm" prependId="false">
+			<h:panelGrid columns="2">
+				<h:outputText value="* #{bundle.clienteNome}" />
+				<h:inputText value="#{clienteMB.cliente.nome}" required="true" label="#{bundle.clienteNome}" />
+				<h:outputText value="Sobrenome:" />
+				<h:inputText value="#{clienteMB.cliente.sobrenome}"  label="Sobrenome" />
+				<h:outputText value="#{bundle.clienteIdade}:" />
+				<h:inputText value="#{clienteMB.cliente.idade}"   label="Idade" />
+				<h:outputText value="Senha:" />
+				<h:inputSecret value="#{clienteMB.cliente.password}"   label="Senha" />
+				<h:outputText value="Genero:" />
+				
+				<p:selectOneMenu value="#{clienteMB.cliente.genero}"  label="Sigla"  >
+					<f:selectItems value="#{clienteMB.generos}"/>
+				</p:selectOneMenu>
+				
+				<h:outputText value="Data de Nascimento:" />
+				<p:calendar value="#{clienteMB.cliente.dataNascimento}" id="popupCalCadCli" pattern="dd/MM/yyyy" />  
+				<h:outputText value="Estado Civil: " />
+				
+				<p:selectOneMenu value="#{clienteMB.cliente.estadoCivil}" >
+					<f:selectItems value="#{clienteMB.estadosCivis}"/>
+				</p:selectOneMenu>
+				
+				<h:outputText value="Telefone: " />
+				<p:inputMask value="#{clienteMB.cliente.telefone}" mask="(99) 9 9999-9999"  label="Telefone" />
+		
+				<p:commandButton value="#{bundle.create}" icon="ui-icon-plus"
+					action="#{clienteMB.createCliente}"
+					update=":messageGrowl :clientesForm"
+					oncomplete="closeDialogIfSucess(xhr, status, args, clienteCreateDialogWidget, 'clienteCreateDialogId')" />
+				<p:commandButton value="#{bundle.cancel}" icon="ui-icon-cancel" actionListener="#{clienteMB.resetCliente()}"
+					onclick="clienteCreateDialogWidget.hide();" type="button" />
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>

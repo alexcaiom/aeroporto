@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<p:dialog widgetVar="clienteDetailDialogWidget" id="clienteDetailDialogId" width="500" modal="true" closable="true"
+		draggable="false" resizable="false" hideEffect="blind" showEffect="fade" >
+		<h:form id="clienteDetailDialogForm" prependId="false">
+			<h:panelGrid columns="2" >
+				<h:outputText value="#{bundle.clienteNome}: " />
+				<h:outputText value="#{clienteMB.clienteWithReservasForDetail.nome}" />
+				<h:outputText value="#{bundle.clienteIdade}: " />
+				<h:outputText value="#{clienteMB.clienteWithReservasForDetail.idade}" />
+			</h:panelGrid>
+ 
+			<p:dataTable value="#{clienteMB.clienteWithReservasForDetail.reservas}" var="reserva">
+				<f:facet name="header">Destino</f:facet>
+				<p:column>
+					<h:outputText value="#{reserva.voo.localDestino}" /> - <h:outputText value="#{reserva.voo.dataSaida}" />
+				</p:column>
+			</p:dataTable>
+
+			<p:commandButton value="#{bundle.ok}" icon="ui-icon-arrow-1-w"
+				actionListener="#{clienteMB.resetClienteWithReservasForDetail()}"
+				onclick="clienteDetailDialogWidget.hide();" />
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>

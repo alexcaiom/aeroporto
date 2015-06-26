@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="/pages/protected/templates/master.xhtml">
+		<ui:define name="divMain">
+			<h:form id="clientesForm">
+			<font style="font-family: sans-serif; font: bold; font-size: x-large;">	#{usuarioMB.usuario.nome} </font>
+	
+			<h:panelGrid columns="2">
+				<h:outputText value="Nome:" />
+				<h:outputText value="#{loginMB.usuario.nome}" required="true" title="#{bundle.clienteNome}" />
+				
+				<h:outputText value="Sobrenome:" />
+				<h:outputText value="#{loginMB.usuario.sobrenome}"  label="Sobrenome" />
+				
+				<h:outputText value="#{bundle.clienteIdade}:" />
+				<h:outputText value="#{loginMB.usuario.idade}"   label="Idade" />
+				
+				<h:outputText value="Genero:" />
+				<h:outputText value="#{loginMB.usuario.genero}" />
+				
+				<h:outputText value="Data de Nascimento:" />
+				<h:outputText value="#{loginMB.usuario.dataNascimento}" />
+				  
+				<h:outputText value="Estado Civil: " />
+				<h:outputText value="#{loginMB.usuario.estadoCivil}" />
+				
+				<h:outputText value="Telefone: " />
+				<p:inputMask value="#{loginMB.usuario.telefone}" mask="(99) 9 9999-9999"  label="Telefone" disabled="disabled"/>
+			</h:panelGrid>	
+				
+				
+				<p:commandButton value="#{bundle.detail}" icon="ui-icon-bullet" onclick="clienteDetailDialogWidget.show();" update=":clienteDetailDialogForm" >
+							<f:setPropertyActionListener target="#{clienteMB.clienteWithReservasForDetail}" value="#{usuario}" />
+						</p:commandButton> 
+						<p:spacer width="10px" />
+						<p:commandButton value="#{bundle.update}" icon="ui-icon-pencil" update=":clienteUpdateDialogForm" onclick="clienteUpdateDialogWidget.show();" >
+							<f:setPropertyActionListener target="#{clienteMB.clienteWithReservasForDetail}" value="#{usuario}" />
+						</p:commandButton>
+						<p:spacer width="10px" />
+						<p:commandButton value="#{bundle.delete}" icon="ui-icon-trash" update=":clienteDeleteDialogForm" onclick="clienteDeleteDialogWidget.show();" >
+							<f:setPropertyActionListener target="#{clienteMB.clienteWithReservasForDetail}" value="#{usuario}" />
+						</p:commandButton>
+						<p:spacer width="10px" />
+						<p:commandButton value="#{bundle.clienteEditReservas}" icon="ui-icon-contact" ajax="false"
+							action="#{clienteMB.editClienteReservas()}">
+								<f:setPropertyActionListener target="#{usuarioMB.usuario}" value="#{usuario}" />
+						</p:commandButton>
+			</h:form>
+
+			<ui:include src="/pages/protected/defaultUser/dialogs/clienteCreateDialog.xhtml" />
+			<ui:include src="/pages/protected/defaultUser/dialogs/clienteUpdateDialog.xhtml" />
+			<ui:include src="/pages/protected/defaultUser/dialogs/clienteDeleteDialog.xhtml" />
+			<ui:include src="/pages/protected/defaultUser/dialogs/clienteDetailDialog.xhtml" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

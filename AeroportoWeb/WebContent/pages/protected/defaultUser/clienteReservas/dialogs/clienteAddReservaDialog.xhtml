@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:ui="http://java.sun.com/jsf/facelets" 
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core" 
+		xmlns:p="http://primefaces.org/ui"
+		xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:body>
+	<p:dialog widgetVar="clienteAddReservaDialogWidget" id="clienteAddReservaDialogId" height="300" width="850" modal="true" closable="true" draggable="true"
+		resizable="true" showEffect="fade" hideEffect="blind" header="#{clienteMB.clienteWithReservas.nome}, aponte as informações abaixo para efetuar sua reserva:">
+		<h:form id="clienteAddReservaDialogForm" prependId="false">
+			V&ocirc;o:
+			<br />
+			<p:selectOneMenu value="#{clienteReservaMB.idVooSelecionado}" required="true" requiredMessage="Selecione um voo">
+				<p:ajax listener="#{clienteReservaMB.preencherAssentosDisponiveis()}"  update="assentos" process="@this"/>
+				<f:selectItem itemLabel="Selecione" itemValue=""/>
+				<f:selectItems value="#{clienteReservaMB.voos}" var="voo" itemValue="#{voo.id}"/>
+			</p:selectOneMenu>
+			<br />
+			<br />
+			Adultos &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			Crian&ccedil;as&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+			Beb&ecirc;s de Colo 
+			<br />
+			
+			<p:spinner value = "#{clienteReservaMB.qtdAdultos}">
+				<p:ajax process="@this"/>
+			</p:spinner>
+			<p:spinner value = "#{clienteReservaMB.qtdCriancas}">
+				<p:ajax process="@this"/>
+			</p:spinner>
+			<p:spinner value = "#{clienteReservaMB.qtdBebesColo}">
+				<p:ajax process="@this"/>
+			</p:spinner>
+			<br />
+			<br />
+			Classe:
+			<br />
+			<p:selectOneMenu value="#{clienteReservaMB.classe}">
+				<p:ajax listener="#{clienteReservaMB.setValorTotal}" process="@this" update="lblPreco"/>
+				<f:selectItem itemLabel="Selecione" itemValue="" />
+				<f:selectItem itemLabel="Econômica" itemValue="1" />
+				<f:selectItem itemLabel="Executiva" itemValue="2" />
+			</p:selectOneMenu>
+			<h:outputLabel id="lblPreco" value="#{clienteReservaMB.reserva.classe} x #{clienteReservaMB.qtdTotal} = #{clienteReservaMB.reserva.preco}"/> 
+			<br />
+			<br />
+			Assentos:
+			<p:selectCheckboxMenu id="assentos" value="#{clienteReservaMB.idAssentosEscolhidos}" label="Assentos"  filter="true" filterText="Filter" filterMatchMode="startsWith" panelStyle="width:420px;">
+					<f:selectItems value="#{clienteReservaMB.assentos}" var="assento" itemValue="#{assento.id}" />
+			</p:selectCheckboxMenu>	
+			<br />
+			<br />
+			<p:commandButton value="#{bundle.add}" icon="ui-icon-plus" action="#{clienteReservaMB.createReserva()}"
+				oncomplete="closeDialogIfSucess(xhr, status, args, clienteAddReservaDialogWidget, 'clienteAddReservaDialogId')" title="Adicionar" />
+			<p:commandButton value="#{bundle.cancel}" icon="ui-icon-cancel" onclick="clienteAddReservaDialogWidget.hide();" type="button" title="Cancelar"/>
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>
+
+<!--  update=":messageGrowl :clienteAddReservaDialogForm:clientesTable" -->

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<p:dialog widgetVar="vooDetailDialogWidget" id="vooDetailDialogId" height="150" width="500" modal="true"
+		closable="true" draggable="true" resizable="false" header="Voo #{vooMB.voo.localDestino} em #{vooMB.voo.dataChegada}"  showEffect="fade"  hideEffect="blind">
+		<h:form id="vooDetailDialogForm" prependId="false">
+			<h:panelGrid columns="2">
+				<h:outputText value="Saída: " />
+				<h:outputText value="#{vooMB.voo.localOrigem} em #{vooMB.voo.dataSaida}" />
+				<h:outputText value="Destino" />
+				<h:outputText value="#{vooMB.voo.localDestino} em #{vooMB.voo.dataChegada}" />
+				<h:outputText value="Aviao: " />
+				<h:outputText value="#{vooMB.voo.aviao.nome}" />
+				
+			</h:panelGrid>
+				<p:dataTable id="voosReservasTable" value="#{vooMB.voo.reservas}" var="reserva" emptyMessage="#{bundle.noRecords}" paginator="true" rows="10"
+					scrollable="true">
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Código" />
+						</f:facet>
+
+						<h:outputText value="#{reserva.id}" />
+					</p:column>
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Cliente" />
+						</f:facet>
+
+						<h:outputText value="#{reserva.cliente.nome}" />
+					</p:column>
+				</p:dataTable>
+				<br />
+				<p:commandButton value="#{bundle.ok}" icon="ui-icon-arrow-1-w" actionListener="#{vooMB.reset()}"
+					onclick="vooDetailDialogWidget.hide();" />
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>

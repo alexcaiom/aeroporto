@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:f="http://java.sun.com/jsf/core" 
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<title>Aeroporto</title>
+		<style>
+			body {
+				background:url(http://download.ultradownloads.com.br/wallpaper/223745_Papel-de-Parede-Nuvens--223745_1600x1200.jpg) 15% 5% no-repeat;
+			}
+			.form {
+				width:410px;
+				height:450px;
+				margin:0 auto;
+				padding-top:180px;
+				text-align:center;
+				/*background:url(../../resources/images/form-background.jpg) 15% 5% no-repeat;*/
+			}
+			.tabela {
+				margin:20px auto;
+			}
+		</style>
+	</h:head>
+	<h:body>
+		<h:form id="form" class="form">
+			<h1>Login</h1>
+			<p>Identifique-se para acessar conte&uacute;do restrito.</p>
+			<p:growl showDetail="false" life="3000" />
+			<h:panelGrid columns="2" class="tabela">
+				<h:outputLabel value="Email" />
+				<h:inputText value="#{loginMB.email}" label="Email" id="email" required="true">
+					<f:validateLength minimum="6" />
+				</h:inputText>
+				
+				<h:outputLabel value="Senha" />
+				<h:inputSecret value="#{loginMB.password}" label="Password" id="senha" required="true" autocomplete="off" >
+					<f:validateLength minimum="6" />
+				</h:inputSecret>
+			</h:panelGrid>
+			<p:commandButton action="#{loginMB.login}" value="Entrar" ajax="false" /> ou
+			<a href="/AeroportoWeb/pages/public/cadastroCliente.xhtml" title="Cadastrar">Cadastrar</a>
+		</h:form>
+	</h:body>
+</html>

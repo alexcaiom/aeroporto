@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<p:dialog widgetVar="vooDeleteDialogWidget" id="vooDeleteDialogId" height="150" width="500" modal="true"
+		closable="true" draggable="true" resizable="false"  header="Voo #{vooMB.voo.localDestino} em #{vooMB.voo.dataChegada}"
+		 hideEffect="explode" showEffect="fade" >
+		<h:form id="vooDeleteDialogForm" prependId="false">
+			#{bundle.deleteRecord}: <h:outputText value="#{vooMB.voo.localDestino} com saída em #{vooMB.voo.dataSaida}" /><br/><br/>
+
+			<p:commandButton value="#{bundle.delete}" icon="ui-icon-plus" action="#{vooMB.delete()}"
+				update=":messageGrowl :voosForm:voosTable"
+				oncomplete="closeDialogIfSucess(xhr, status, args, vooDeleteDialogWidget, 'vooDeleteDialogId')" />
+			<p:commandButton value="#{bundle.cancel}" icon="ui-icon-cancel" actionListener="#{vooMB.reset()}"
+				onclick="vooDeleteDialogWidget.hide();" type="button" />
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:ui="http://java.sun.com/jsf/facelets" 
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:f="http://java.sun.com/jsf/core" 
+		xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="/pages/protected/templates/master.xhtml">
+		<ui:define name="divMain">
+			<h3>Reservas para #{loginMB.usuario.nome}:</h3> 
+			<h:form id="reservasForm">
+				<p:growl id="growl" showDetail="true"/>  
+				<p:dataTable id="reservasTable" value="#{clienteReservaMB.reservas}" var="reserva" emptyMessage="#{bundle.noRecords}"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					draggableColumns="true" resizableColumns="true" scrollable="true">
+					
+					<!-- <p:ajax event="rowToggle" listener="#{clienteReservaMB.onRowToggle}" update=":form:growl" /> --> 
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Horario Saida" />
+						</f:facet>
+
+						<h:outputText value="#{reserva.voo.dataSaida}" />
+					</p:column>
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Origem" />
+						</f:facet>
+
+						<h:outputText value="#{reserva.voo.localOrigem}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Chegada" />
+						</f:facet>
+						<h:outputText value="#{reserva.voo.dataChegada}" />
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Destino" />
+						</f:facet>
+						<h:outputText value="#{reserva.voo.localDestino}" />
+					</p:column>
+					
+					<p:column>
+					
+						<p:commandButton value="#{bundle.remove}" icon="ui-icon-plus" actionListener="#{clienteReservaMB.resetReserva}" onclick="clienteRemoveReservaDialogWidget.show();" update=":clienteRemoveReservaDialogForm" >
+							<f:setPropertyActionListener target="#{clienteReservaMB.reserva}" value="#{reserva}" />
+						</p:commandButton>
+						<p:spacer width="10px" />
+					</p:column>
+					
+					<p:rowExpansion>
+						<h:panelGrid id="display" columns="2" cellpadding="4" style="width:300px;"  
+			                            styleClass=" ui-widget-content grid">  
+			  
+				                <f:facet name="header">  
+				                      <h:outputText value="#{clienteReservaMB.localOrigem}" />
+				                       - 
+				                       <h:outputText value="#{clienteReservaMB.localDestino}" />
+				                       às 
+				                       <h:outputText value="#{clienteReservaMB.dataSaida}" />
+				                      
+				                </f:facet>  
+				  
+				                <h:outputText value="Model:" />  
+				                <h:outputText id="model" value="#{car.model}" />  
+				  
+				                <h:outputText value="Year:" />  
+				                <h:outputText id="year" value="#{car.year}" />  
+				  
+				                <h:outputText value="Manufacturer:" />  
+				                <h:outputText value="#{car.manufacturer}"/>  
+				  
+				                <h:outputText value="Color:" />  
+				                <h:outputText value="#{car.color}"/>  
+			            </h:panelGrid>  
+					</p:rowExpansion>
+
+				</p:dataTable>
+			</h:form>
+				<p:commandButton value="#{bundle.add}  #{bundle.reserva}" icon="ui-icon-plus" onclick="clienteAddReservaDialogWidget.show();" update=":clienteAddReservaDialogForm" />
+
+			<ui:include src="/pages/protected/defaultUser/clienteReservas/dialogs/clienteAddReservaDialog.xhtml" />
+			<ui:include src="/pages/protected/defaultUser/clienteReservas/dialogs/clienteRemoveReservaDialog.xhtml" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+	<h:body>   
+    	<ui:composition>
+	     	<div id="topMessage">
+	     		<img src="http://thumbs.dreamstime.com/z/cone-do-avio-de-passageiros-do-vetor-8056952.jpg" alt="Linhas Aéreas / Airlines"/>
+	     		<h:form style=" text-align: right; width: 50%; float: right;">
+	     			<font style="font-family: sans-serif; font-size: x-large;">
+			     		<b>#{bundle.loginWelcomeMessage} #{loginMB.usuario.nome} | </b> 
+			     		<p:commandButton value="#{bundle.logOut}" action="#{loginMB.logOut}" ajax="false" style="font-size: 20px;" />
+			     	</font>
+	     		</h:form>
+	     	</div>
+		</ui:composition>
+	</h:body>
+</html>

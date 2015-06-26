@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<p:dialog widgetVar="aviaoDeleteDialogWidget" id="aviaoDeleteDialogId" height="150" width="500" modal="true"
+		closable="true" draggable="false" resizable="false" showEffect="fade" hideEffect="explode">
+		<h:form id="aviaoDeleteDialogForm" prependId="false">
+			#{bundle.deleteRecord}: <h:outputText value="#{aviaoMB.aviao.nome}" /><br/><br/>
+
+			<p:commandButton value="#{bundle.delete}" icon="ui-icon-plus" action="#{aviaoMB.delete()}"
+				update=":messageGrowl :avioesForm:avioesTable"
+				oncomplete="closeDialogIfSucess(xhr, status, args, aviaoDeleteDialogWidget, 'aviaoDeleteDialogId')" />
+			<p:commandButton value="#{bundle.cancel}" icon="ui-icon-cancel" actionListener="#{aviaoMB.reset()}"
+				onclick="aviaoDeleteDialogWidget.hide();" type="button" />
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>

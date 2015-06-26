@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+       
+        <!-- Configuração da conexão com o banco de dados -->
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost;databaseName=aeroporto</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">lifesgood</property>
+        <!-- Essa classe ensina o java a conversar com o BD
+        Para o hibernate é imprescindível ter essa classe e o driver de conexão-->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+       
+        <!-- Configurações de debug -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">false</property>
+        <!-- <property name="generate_statistics">true</property>
+        <property name="use_sql_comments">true</property>  -->
+        <property name="hbm2ddl.auto">update</property>
+       
+        <!-- Mapeando as classes do projeto -->
+        <mapping class="com.model.Assento"/>
+        <mapping class="com.model.Aviao"/>
+        <mapping class="com.model.Reserva"/>
+        <mapping class="com.model.Voo"/>
+        <mapping class="com.model.usuario.Administrador"/>
+        <mapping class="com.model.usuario.Cliente"/>
+        <mapping class="com.model.usuario.Endereco"/>
+        <mapping class="com.model.usuario.Pessoa"/>
+        <mapping class="com.model.usuario.Usuario"/>
+       
+    </session-factory>
+</hibernate-configuration>
