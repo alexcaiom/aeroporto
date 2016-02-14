@@ -23,7 +23,24 @@
 						<h:outputText value="#{aviao.operadora}" />
 					</p:column>
 
+					<p:column sortBy="#{aviaoMB.qtdAssentosEconomica}">
+						<f:facet name="header">
+							<h:outputText value="Assentos Econômicos" />
+						</f:facet>
+						<h:outputText value="#{aviaoMB.qtdAssentosEconomica}" />
+					</p:column>
+
+					<p:column sortBy="#{aviaoMB.qtdAssentosExecutiva}">
+						<f:facet name="header">
+							<h:outputText value="Assentos Executivos" />
+						</f:facet>
+						<h:outputText value="#{aviaoMB.qtdAssentosExecutiva}" />
+					</p:column>
+
 					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Operações" />
+						</f:facet>
 						<p:commandButton value="#{bundle.detail}" icon="ui-icon-bullet" onclick="aviaoDetailDialogWidget.show();" update=":aviaoDetailDialogForm" >
 							<f:setPropertyActionListener target="#{aviaoMB.aviao}" value="#{aviao}" />
 						</p:commandButton> 

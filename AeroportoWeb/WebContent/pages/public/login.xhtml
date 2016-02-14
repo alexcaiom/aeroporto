@@ -20,12 +20,16 @@
 			.tabela {
 				margin:20px auto;
 			}
+			.texto-alinhado-centro {
+				text-align: center;
+			}
 		</style>
 	</h:head>
 	<h:body>
 		<h:form id="form" class="form">
-			<h1>Login</h1>
-			<p>Identifique-se para acessar conte&uacute;do restrito.</p>
+			<h1>Aeroporto na Web</h1>
+			<h5>Aqui começa sua viagem</h5>
+			<p>Identifique-se aqui para agendar sua próxima viagem.</p>
 			<p:growl showDetail="false" life="3000" />
 			<h:panelGrid columns="2" class="tabela">
 				<h:outputLabel value="Email" />
@@ -37,8 +41,9 @@
 				<h:inputSecret value="#{loginMB.password}" label="Password" id="senha" required="true" autocomplete="off" >
 					<f:validateLength minimum="6" />
 				</h:inputSecret>
+				<span class="texto-alinhado-centro">#{loginMB.mensagem} </span>
 			</h:panelGrid>
-			<p:commandButton action="#{loginMB.login}" value="Entrar" ajax="false" /> ou
+			<p:commandButton action="#{loginMB.login}" value="Entrar" /> ou
 			<a href="/AeroportoWeb/pages/public/cadastroCliente.xhtml" title="Cadastrar">Cadastrar</a>
 		</h:form>
 	</h:body>

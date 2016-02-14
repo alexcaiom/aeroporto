@@ -11,12 +11,22 @@ import com.model.usuario.Usuario;
 @RequestScoped
 @ManagedBean
 public class LoginMB extends AbstractMB {
+	
+	public static final String CHAVE_LOGIN = "usuario";
+
+	public LoginMB() {
+		loginMB = this;
+	}
+	
+	
+	public static LoginMB loginMB;
 	private Usuario usuario;
 
 	private String email;
 	private String password;
-	public Boolean isDefaultUser;
-	public Boolean isAdmin;
+	public boolean defaultUser;
+	public boolean admin;
+	public String mensagem = "";
 
 	public String getEmail() {
 		return email;
@@ -34,6 +44,14 @@ public class LoginMB extends AbstractMB {
 		this.password = password;
 	}
 
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public void setMensagem(String mensagem) {
+		this.mensagem = mensagem;
+	}
+
 	public String login() {
 		UsuarioBO bo = new UsuarioBO();
 
@@ -45,7 +63,7 @@ public class LoginMB extends AbstractMB {
 			return "/pages/protected/index.xhtml";
 		}
 
-		displayErrorMessageToUser("Verifique seu e-mail/ senha");
+		mensagem = "Verifique seu e-mail/ senha";
 		
 		return null;
 	}
@@ -71,36 +89,33 @@ public class LoginMB extends AbstractMB {
 		return this.usuario;
 	}
 	
-	public Boolean getIsDefaultUser() {
-		isDefaultUser = getUsuario().isUser();
-		return isDefaultUser;
+	public boolean isDefaultUser() {
+		this.defaultUser = getUsuario().isUser();
+		return this.defaultUser;
 	}
 
-	public void setIsDefaultUser(Boolean isDefaultUser) {
-		this.isDefaultUser = isDefaultUser;
+	public void setDefaultUser(boolean isDefaultUser) {
+		this.defaultUser = isDefaultUser;
 	}
 
-	public Boolean getIsAdmin() {
-		isAdmin = getUsuario().isAdmin();
-		return isAdmin;
+	public boolean isAdmin() {
+		this.admin = getUsuario().isAdmin();
+		return this.admin;
 	}
 
-	public void setIsAdmin(Boolean isAdmin) {
-		this.isAdmin = isAdmin;
+	public void setAdmin(boolean isAdmin) {
+		this.admin = isAdmin;
 	}
 
 	private void putUsuarioToSessao(Usuario usuario){
-		FacesContext context = FacesContext.getCurrentInstance();
-		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-		request.getSession().setAttribute("usuario", usuario);
+		addToSessao(CHAVE_LOGIN, usuario);
 	}
 	
-	public static Usuario getUsuarioFromSessao(){
-		FacesContext context = FacesContext.getCurrentInstance();
-		HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-		if(request.getSession().getAttribute("usuario") != null){
-			return (Usuario) request.getSession().getAttribute("usuario");
-		}
-		return null;
+	public Usuario getUsuarioFromSessao(){
+		return (Usuario) getFromSessao(CHAVE_LOGIN); 
+	}
+	
+	public static Usuario getUsuarioLogado (){
+		return loginMB.getUsuarioFromSessao(); 
 	}
 }

@@ -5,7 +5,7 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:body>
-	<p:dialog widgetVar="usuarioUpdateDialogWidget"
+	<p:dialog widgetVar="usuarioUpdateDialogWidget" header="#{usuarioMB.usuario.nome}"
 		id="usuarioUpdateDialogId" height="150" width="500" modal="true"
 		closable="true" draggable="true" resizable="false" hideEffect="blind" showEffect="fade" >
 		<h:form id="usuarioUpdateDialogForm" prependId="false">
@@ -14,8 +14,8 @@
 				<h:inputText value="#{usuarioMB.usuario.nome}" required="true" title="#{bundle.clienteNome}" >
 					<f:validateLength minimum="4" />
 				</h:inputText>
-				<h:outputText value="* #{bundle.clienteIdade}" />
-				<h:inputText value="#{usuarioMB.usuario.idade}" required="true" title="#{bundle.clienteIdade}" />
+				<h:outputText value="* #{bundle.clienteDataNascimento}" />
+				<p:calendar value="#{usuarioMB.usuario.dataNascimento}" id="popupCalUpdtCli" required="false" pattern="dd/MM/yyyy" />
 				
 		
 				<p:commandButton value="#{bundle.update}" icon="ui-icon-plus"

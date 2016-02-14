@@ -27,20 +27,20 @@
 			<p:growl showDetail="false" life="3000" />
 			<h:panelGrid columns="2" class="tabela">
 				<h:outputLabel value="Nome" />
-				<h:inputText value="#{clienteMB.cliente.nome}" label="Nome" id="Nome" required="true">
+				<h:inputText value="#{clienteMB.clienteCadastro.nome}" label="Nome" id="Nome" required="true">
 					<f:validateLength minimum="6" />
 				</h:inputText>
 				
 				<h:outputLabel value="Sobrenome" />
-				<h:inputText value="#{clienteMB.cliente.sobrenome}" label="Sobrenome" id="Sobrenome" required="true">
+				<h:inputText value="#{clienteMB.clienteCadastro.sobrenome}" label="Sobrenome" id="Sobrenome" required="true">
 					<f:validateLength minimum="6" />
 				</h:inputText>
 				
 				<h:outputLabel value="Email" />
-				<h:inputText value="#{clienteMB.cliente.email}" label="Email" id="email" required="true" />
+				<h:inputText value="#{clienteMB.clienteCadastro.email}" label="Email" id="email" required="true" />
 				
 				<h:outputLabel value="Senha" />
-				<h:inputSecret value="#{clienteMB.cliente.password}" label="Password" id="senha" required="true" autocomplete="off" >
+				<h:inputSecret value="#{clienteMB.clienteCadastro.password}" label="Password" id="senha" required="true" autocomplete="off" >
 					<f:validateLength minimum="6" />
 				</h:inputSecret>
 				

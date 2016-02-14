@@ -29,7 +29,7 @@ public class Cliente extends Usuario
 	public static final String FIND_USER_BY_ID_WITH_RESERVAS = "Person.findClienteByIdWithReservas";
 
 	private Long cpf;
-	@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.LAZY, mappedBy = "cliente")
+	@OneToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER, mappedBy = "cliente")
 	private List<Reserva> reservas;
 
 	public Long getCpf() {

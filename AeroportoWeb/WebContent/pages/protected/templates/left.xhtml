@@ -10,11 +10,8 @@
 				<p:commandButton styleClass="menuButton" icon="ui-icon-arrowstop-1-e" rendered="#{loginMB.isDefaultUser()}" action="/pages/protected/defaultUser/defaultUserIndex.xhtml" 					value="Perfil" ajax="false" immediate="true" />
 				<p:commandButton styleClass="menuButton" icon="ui-icon-arrowstop-1-e" rendered="#{loginMB.isAdmin()}" 		action="/pages/protected/admin/clienteLista.xhtml" 								value="#{bundle.clientePlural}" ajax="false" immediate="true" />
 				<p:commandButton styleClass="menuButton" icon="ui-icon-arrowstop-1-e" rendered="#{loginMB.isAdmin()}" 		action="/pages/protected/admin/vooLista.xhtml" 									value="Voos" ajax="false" immediate="true" />
-				<br />
 				<p:commandButton styleClass="menuButton" icon="ui-icon-arrowstop-1-e" rendered="#{loginMB.isDefaultUser()}" action="/pages/protected/defaultUser/clienteReservas/clienteReservas.xhtml" 	value="#{bundle.reservaPlural}" ajax="false" immediate="true" />
-				<br />
 				<p:commandButton styleClass="menuButton" icon="ui-icon-arrowstop-1-e" rendered="#{loginMB.isAdmin()}" action="/pages/protected/admin/usuarioLista.xhtml" 									value="Usuários" ajax="false" immediate="true" />
-				<br />
 			</h:form>
 		</ui:composition>
 	</h:body>

@@ -23,6 +23,10 @@ public class ClienteBO implements Serializable {
 		Cliente persistedCliente = clienteDAO.pesquisar(cliente.getId());
 		persistedCliente.setNome(cliente.getNome());
 		persistedCliente.setIdade(cliente.getIdade());
+		persistedCliente.setGenero(cliente.getGenero());
+		persistedCliente.setDataNascimento(cliente.getDataNascimento());
+		persistedCliente.setEstadoCivil(cliente.getEstadoCivil());
+		persistedCliente.setTelefone(cliente.getTelefone());
 		clienteDAO.atualizar(persistedCliente);
 	}
 	

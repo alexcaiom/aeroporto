@@ -30,16 +30,16 @@
 				<h:outputText value="#{loginMB.usuario.estadoCivil}" />
 				
 				<h:outputText value="Telefone: " />
-				<p:inputMask value="#{loginMB.usuario.telefone}" mask="(99) 9 9999-9999"  label="Telefone" disabled="disabled"/>
+				<h:outputText value="#{loginMB.usuario.telefone}" />
 			</h:panelGrid>	
 				
 				
 				<p:commandButton value="#{bundle.detail}" icon="ui-icon-bullet" onclick="clienteDetailDialogWidget.show();" update=":clienteDetailDialogForm" >
-							<f:setPropertyActionListener target="#{clienteMB.clienteWithReservasForDetail}" value="#{usuario}" />
+							<f:setPropertyActionListener target="#{clienteMB.cliente}" value="#{usuario}" />
 						</p:commandButton> 
 						<p:spacer width="10px" />
 						<p:commandButton value="#{bundle.update}" icon="ui-icon-pencil" update=":clienteUpdateDialogForm" onclick="clienteUpdateDialogWidget.show();" >
-							<f:setPropertyActionListener target="#{clienteMB.clienteWithReservasForDetail}" value="#{usuario}" />
+							<f:setPropertyActionListener target="#{clienteMB.cliente}" value="#{usuario}" />
 						</p:commandButton>
 						<p:spacer width="10px" />
 						<p:commandButton value="#{bundle.delete}" icon="ui-icon-trash" update=":clienteDeleteDialogForm" onclick="clienteDeleteDialogWidget.show();" >
@@ -48,7 +48,7 @@
 						<p:spacer width="10px" />
 						<p:commandButton value="#{bundle.clienteEditReservas}" icon="ui-icon-contact" ajax="false"
 							action="#{clienteMB.editClienteReservas()}">
-								<f:setPropertyActionListener target="#{usuarioMB.usuario}" value="#{usuario}" />
+								<f:setPropertyActionListener target="#{clienteMB.cliente}" value="#{usuario}" />
 						</p:commandButton>
 			</h:form>
 

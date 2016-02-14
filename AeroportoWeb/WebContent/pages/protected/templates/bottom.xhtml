@@ -10,15 +10,15 @@
 	     			<h:form style=" text-align: center;">
 	     				<p:dock>  
 	     					<!-- Itens de Usuario -->
-						    <p:menuitem value="Home" rendered="#{loginMB.isDefaultUser}" icon="http://primefaces.org/showcase/images/dock/home.png" url="/pages/protected/index.xhtml"/>
-						    <p:menuitem value="Perfil" rendered="#{loginMB.isDefaultUser}" icon="http://macmagazine.com.br/wp-content/uploads/2010/06/14-lebcontacts_icon.png" url="/pages/protected/defaultUser/defaultUserIndex.xhtml"/>
-						    <p:menuitem value="Reservas" rendered="#{loginMB.isDefaultUser}" icon="http://macmagazine.com.br/wp-content/uploads/2011/02/09-iBooks.png" url="/pages/protected/defaultUser/clienteReservas/clienteReservas.xhtml"/>
+						    <p:menuitem value="Home" rendered="#{loginMB.defaultUser}" icon="http://primefaces.org/showcase/resources/demo/images/dock/home.png" url="/pages/protected/index.xhtml"/>
+						    <p:menuitem value="Perfil" rendered="#{loginMB.defaultUser}" icon="http://macmagazine.com.br/wp-content/uploads/2010/06/14-lebcontacts_icon.png" url="/pages/protected/defaultUser/defaultUserIndex.xhtml"/>
+						    <p:menuitem value="Reservas" rendered="#{loginMB.defaultUser}" icon="http://macmagazine.com.br/wp-content/uploads/2011/02/09-iBooks.png" url="/pages/protected/defaultUser/clienteReservas/clienteReservas.xhtml"/>
 							<!-- Itens de Admin -->
-						    <p:menuitem value="Home" rendered="#{loginMB.isAdmin}" icon="http://www.clker.com/cliparts/E/y/s/j/w/U/home-icon-hi.png" url="/pages/protected/index.xhtml"/>
-						    <p:menuitem value="Clientes" rendered="#{loginMB.isAdmin}" icon="http://macmagazine.com.br/wp-content/uploads/2010/06/14-lebcontacts_icon.png" url="/pages/protected/admin/clienteLista.xhtml"/>
-						    <p:menuitem value="Vôos" rendered="#{loginMB.isAdmin}" icon="http://www.upm2.com.br/wp-content/uploads/2010/03/icone_transporte_aviao-150x150.png" url="/pages/protected/admin/vooLista.xhtml"/>
-						    <p:menuitem value="Avi&otilde;es" rendered="#{loginMB.isAdmin}" icon="http://static.freepik.com/fotos-gratis/aviao-de-papel-triangular_318-25357.jpg" url="/pages/protected/admin/aviaoLista.xhtml"/>
-						    <p:menuitem value="Usuários" rendered="#{loginMB.isAdmin}" icon="/resources/images/user.png" url="/pages/protected/admin/usuarioLista.xhtml"/>  
+						    <p:menuitem value="Home" rendered="#{loginMB.admin}" icon="http://www.clker.com/cliparts/E/y/s/j/w/U/home-icon-hi.png" url="/pages/protected/index.xhtml"/>
+						    <p:menuitem value="Clientes" rendered="#{loginMB.admin}" icon="http://macmagazine.com.br/wp-content/uploads/2010/06/14-lebcontacts_icon.png" url="/pages/protected/admin/clienteLista.xhtml"/>
+						    <p:menuitem value="Vôos" rendered="#{loginMB.admin}" icon="http://www.upm2.com.br/wp-content/uploads/2010/03/icone_transporte_aviao-150x150.png" url="/pages/protected/admin/vooLista.xhtml"/>
+						    <p:menuitem value="Avi&otilde;es" rendered="#{loginMB.admin}" icon="http://static.freepik.com/fotos-gratis/aviao-de-papel-triangular_318-25357.jpg" url="/pages/protected/admin/aviaoLista.xhtml"/>
+						    <p:menuitem value="Usuários" rendered="#{loginMB.admin}" icon="/resources/images/user.png" url="/pages/protected/admin/usuarioLista.xhtml"/>  
 						</p:dock>
 	     			</h:form>
 	     		</h1>

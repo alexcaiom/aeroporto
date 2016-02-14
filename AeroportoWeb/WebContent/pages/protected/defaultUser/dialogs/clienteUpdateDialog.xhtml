@@ -5,15 +5,29 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 <h:body>
-	<p:dialog widgetVar="clienteUpdateDialogWidget"
+	<p:dialog widgetVar="clienteUpdateDialogWidget" showHeader="Atualizar #{clienteMB.cliente.nome}"
 		id="clienteUpdateDialogId" height="150" width="500" modal="true"
 		closable="true" draggable="true" resizable="false" hideEffect="blind" showEffect="fade" >
 		<h:form id="clienteUpdateDialogForm" prependId="false">
 			<h:panelGrid columns="2">
 				<h:outputText value="* #{bundle.clienteNome}" />
 				<h:inputText value="#{clienteMB.cliente.nome}" required="true" label="#{bundle.clienteNome}" />
-				<h:outputText value="* #{bundle.clienteIdade}" />
-				<h:inputText value="#{clienteMB.cliente.idade}" required="true" label="#{bundle.clienteIdade}" />
+				<h:outputText value="* #{bundle.clienteSobreNome}" />
+				<h:inputText value="#{clienteMB.cliente.sobrenome}" required="true" label="#{bundle.clienteSobreNome}" />
+				<h:outputText value="#{bundle.clienteIdade}" />
+				<h:inputText value="#{clienteMB.cliente.idade}" label="#{bundle.clienteIdade}" />
+				<h:outputText value="#{bundle.clienteGenero}" />
+				<p:selectOneMenu value="#{clienteMB.cliente.genero}" label="#{bundle.clienteGenero}" >
+					<f:selectItems value="#{clienteMB.generos}" />
+				</p:selectOneMenu>
+				<h:outputText value="#{bundle.clienteDataNascimento}" />
+				<p:calendar value="#{clienteMB.cliente.dataNascimento}" pattern="dd/MM/yyyy" mask="true" />
+				<h:outputText value="* #{bundle.clienteEstadoCivil}" />
+				<p:selectOneMenu value="#{clienteMB.cliente.estadoCivil}" label="#{bundle.clienteEstadoCivil}" >
+					<f:selectItems value="#{clienteMB.estadosCivis}" />
+				</p:selectOneMenu>
+				<h:outputText value="#{bundle.clienteTelefone}" />
+				<p:inputMask value="#{clienteMB.cliente.telefone}" mask="99999999999"  label="Telefone"/>
 		
 				<p:commandButton value="#{bundle.update}" icon="ui-icon-plus"
 					action="#{clienteMB.updateCliente()}"

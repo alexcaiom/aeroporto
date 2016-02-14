@@ -1,7 +1,7 @@
 package com.model.usuario;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -17,6 +17,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import com.model.Role;
+import com.util.UtilsData;
 
 @Entity
 @Inheritance
@@ -59,9 +60,9 @@ public class Usuario
 	public Integer idade;
 	public String nome;
 	public String sobrenome;
-	private Calendar dataNascimento;
+	private Date dataNascimento;
 	private Integer telefone;
-	
+	@Enumerated(EnumType.STRING)
 	private EstadoCivil estadoCivil;
 
 	public Integer getIdade() {
@@ -119,11 +120,12 @@ public class Usuario
 		this.role = role;
 	}
 
-	public Calendar getDataNascimento() {
+	public Date getDataNascimento() {
 		return dataNascimento;
 	}
-	public void setDataNascimento(Calendar dataNascimento) {
+	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
+		this.setIdade(UtilsData.getIdadePelaDataDeNascimento(dataNascimento));
 	}
 	public Integer getTelefone() {
 		return telefone;

@@ -26,6 +26,7 @@ public class ClienteMB extends LoginMB implements Serializable {
 	private static final String SELECTED_CLIENTE = "selectedCliente";
 
 	private Cliente cliente;
+	private Cliente clienteCadastro = new Cliente();
 	private Reserva reserva;
 	private Cliente clienteWithReservas;
 	private Cliente clienteWithReservasForDetail;
@@ -36,23 +37,28 @@ public class ClienteMB extends LoginMB implements Serializable {
 	private ReservaBO reservaFacade;
 	private ClienteBO clienteFacade;
 	
+	private List<EstadoCivil> estadosCivis;
+	private List<Genero> generos;
+	
 	private String passwordConfirmar;
 
-	public void createCliente() {
+	public String createCliente() {
 		try {
-			if(!passwordConfirmar.equals(getCliente().getPassword())){
+			if(!passwordConfirmar.equals(getClienteCadastro().getPassword())){
 				throw new Exception("As senhas não conferem!");
 			}
-			getClienteBO().inserir(getCliente());
+			getClienteBO().inserir(getClienteCadastro());
 			closeDialog();
 			displayInfoMessageToUser("Created With Sucess");
 			loadClientes();
 			resetCliente();
+			return "";
 		} catch (Exception e) {
 			keepDialogOpen();
 			displayErrorMessageToUser("Ops, we could not create. Try again later");
 			e.printStackTrace();
 		}
+		return null;
 	}
 
 	public void updateCliente() {
@@ -62,6 +68,8 @@ public class ClienteMB extends LoginMB implements Serializable {
 			displayInfoMessageToUser("Updated With Sucess");
 			loadClientes();
 			resetCliente();
+			removeDaSessao(LoginMB.CHAVE_LOGIN);
+			addToSessao(LoginMB.CHAVE_LOGIN, cliente);
 		} catch (Exception e) {
 			keepDialogOpen();
 			displayErrorMessageToUser("Ops, we could not create. Try again later");
@@ -126,8 +134,7 @@ public class ClienteMB extends LoginMB implements Serializable {
 
 	public Cliente getClienteWithReservasForDetail() {
 		if (clienteWithReservasForDetail == null) {
-			clienteWithReservasForDetail = new Cliente();
-			clienteWithReservasForDetail.setReservas(new ArrayList<Reserva>());
+			clienteWithReservasForDetail = cliente;
 		}
 
 		return clienteWithReservasForDetail;
@@ -171,14 +178,29 @@ public class ClienteMB extends LoginMB implements Serializable {
 
 	public Cliente getCliente() {
 		if (cliente == null) {
-			cliente = new Cliente();
+			cliente = (Cliente) LoginMB.getUsuarioLogado();
 		}
-
 		return cliente;
 	}
 	
+	/*public List<String> getEstadosCivis() {
+		List<String> estadoCivil = new ArrayList<>();
+		for (EstadoCivil ec : Arrays.asList(EstadoCivil.values())) {
+			estadoCivil.add(ec.name());
+		}
+		return estadoCivil;
+	}*/
+	
 	public void setCliente(Cliente cliente){
 		this.cliente = cliente;
+	}
+
+	public Cliente getClienteCadastro() {
+		return clienteCadastro;
+	}
+
+	public void setClienteCadastro(Cliente clienteCadastro) {
+		this.clienteCadastro = clienteCadastro;
 	}
 
 	public List<Cliente> getAllClientes() {

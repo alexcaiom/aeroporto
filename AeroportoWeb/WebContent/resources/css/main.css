@@ -29,28 +29,20 @@ a:link,a:visited,a:hover,a:active {
 	bottom: 10px;
 }
 
-#divTop {
-	padding: 0;
-	margin: 0;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	right: 0px;
-	height: 160px;
-	overflow: auto;
+div#divTop {
 	border: 1px solid darkGray;	
+	vertical-align: middle;
 }
 
-#divTop img {
-	height:120px;
-	width:120px;
-	margin:20px 50px;
+img#logo {
+	width: 150px;
 }
 
 #divTop form {
 	font-family:arial;
   	height:80px;
 	margin:40px;
+	float: left;
 }
 
 #divTop form b {
@@ -63,11 +55,7 @@ a:link,a:visited,a:hover,a:active {
 	padding: 0;
 	padding-left: 10px;
 	margin: 0;
-	position: absolute;
-	top: 120px;
-	left: 10px;
-	bottom: 20px;
-	overflow: auto;
+	float: left;
 	width: 250px;
 	border: thin solid lightGray;
 	background: #eeeeee;
@@ -96,8 +84,8 @@ a:link,a:visited,a:hover,a:active {
 	font-size:10px;
 }
 
-/*
-	Configuracao com menu Esquerdo
+
+	/*Configuracao com menu Esquerdo*/
  #divMain {
 	padding: 0;
 	padding-top: 10px;
@@ -110,4 +98,4 @@ a:link,a:visited,a:hover,a:active {
 	overflow: auto;
 	border: thin solid lightGray;
 	background: #fefeef;
-} */
+}

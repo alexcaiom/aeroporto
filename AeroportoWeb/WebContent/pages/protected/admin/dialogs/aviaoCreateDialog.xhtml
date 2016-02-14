@@ -16,14 +16,10 @@
 				</h:inputText>
 				
 				<h:outputText value="* Classe Econômica:" />
-				<p:spinner value = "#{aviaoMB.qtdAssentosEconomica}">
-					<p:ajax process="@this"/>
-				</p:spinner>
+				<p:spinner id="qtdAssentosClasseEconomica" value = "#{aviaoMB.qtdAssentosEconomica}" />
 				
 				<h:outputText value="* Classe Executiva:" />
-				<p:spinner value = "#{aviaoMB.qtdAssentosExecutiva}">
-					<p:ajax process="@this"/>
-				</p:spinner>
+				<p:spinner id="qtdAssentosClasseExecutiva" value = "#{aviaoMB.qtdAssentosExecutiva}" />
 		
 				<p:commandButton value="#{bundle.create}" icon="ui-icon-plus"
 					action="#{aviaoMB.create()}"

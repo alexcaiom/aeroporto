@@ -8,23 +8,23 @@
 
 	<h:head>
 		<title>Aeroporto</title>
-		<h:outputStylesheet library="css" name="main.css" />
+		<link rel="stylesheet" href="/AeroportoWeb/resources/css/main.css" type="text/css"></link>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	</h:head>
 	
 	<h:body>
 		<f:view contentType="text/html; charset=UTF-8" encoding="UTF-8" >
-			<div id="divTop" style="vertical-align: middle;">
+			<div id="divTop">
 				<ui:insert name="divTop">
 					<ui:include src="top.xhtml" />
 				</ui:insert>
 			</div>
 	
-			<!-- <div id="divLeft">
+			<div id="divLeft">
 				<ui:insert name="divLeft">
 					<ui:include src="left.xhtml" />
 				</ui:insert>
-			</div> -->
+			</div>
 	
 			<div id="divMain">
 				<p:growl id="messageGrowl" />

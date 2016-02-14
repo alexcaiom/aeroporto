@@ -260,7 +260,7 @@ public class ClienteReservaMB extends AbstractMB implements Serializable {
 
 	public Cliente getCliente() {
 		if(cliente == null){
-			setCliente((Cliente) LoginMB.getUsuarioFromSessao());
+			setCliente((Cliente) LoginMB.getUsuarioLogado());
 		}
 		return cliente;
 	}

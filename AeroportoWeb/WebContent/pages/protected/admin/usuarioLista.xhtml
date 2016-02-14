@@ -31,7 +31,10 @@
 					</p:column>
 					
 					<p:column>
-						<p:commandButton value="#{bundle.detail}" icon="ui-icon-bullet" onclick="usuarioDetailDialogWidget.show();" update=":usuarioDetailDialogForm" >
+						<f:facet name="header">
+							<h:outputText value="Operações"/>
+						</f:facet>
+						<p:commandButton value="#{bundle.detail}" icon="ui-icon-bullet" action="usuarioMB.resetUsuario" onclick="usuarioDetailDialogWidget.show();" update=":usuarioDetailDialogForm" >
 							<f:setPropertyActionListener target="#{usuarioMB.usuario}" value="#{usuario}" />
 						</p:commandButton> 
 						<p:spacer width="10px" />

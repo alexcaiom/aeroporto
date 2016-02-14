@@ -28,6 +28,7 @@ public class AviaoMB extends AbstractMB implements Serializable {
 	private String SELECTED_VOO = "selectedAviao";
 	private AviaoBO aviaoBO;
 	private List<Operadora> operadoras;
+	
 	private Integer qtdAssentosEconomica;
 	private Integer qtdAssentosExecutiva;
 
@@ -113,9 +114,13 @@ public class AviaoMB extends AbstractMB implements Serializable {
 		if(aviao == null){
 			if(avioes != null && !avioes.isEmpty()) {
 				aviao = avioes.get(0);
+			} else {
+				aviao = new Aviao();
 			}
 		}
-		detalharAviao();
+		if(aviao != null && aviao.getId() != null){
+			detalharAviao();
+		}
 		return aviao;
 	}
 
@@ -165,6 +170,17 @@ public class AviaoMB extends AbstractMB implements Serializable {
 	}
 
 	public Integer getQtdAssentosEconomica() {
+		if (this.qtdAssentosEconomica == null) {
+			if (getAviao() != null) {
+				List<Assento> assentos = getAviao().getAssentos();
+				this.qtdAssentosEconomica = 0;
+				for (Assento assento : assentos) {
+					if (assento.getTipo() == TipoAssento.CLASSE_ECONOMICA) {
+						this.qtdAssentosEconomica++;
+					}
+				}
+			}
+		}
 		return qtdAssentosEconomica;
 	}
 
@@ -173,6 +189,17 @@ public class AviaoMB extends AbstractMB implements Serializable {
 	}
 
 	public Integer getQtdAssentosExecutiva() {
+		if (this.qtdAssentosExecutiva == null) {
+			if (getAviao() != null) {
+				List<Assento> assentos = getAviao().getAssentos();
+				this.qtdAssentosExecutiva = 0;
+				for (Assento assento : assentos) {
+					if (assento.getTipo() == TipoAssento.CLASSE_EXECUTIVA) {
+						this.qtdAssentosExecutiva++;
+					}
+				}
+			}
+		}
 		return qtdAssentosExecutiva;
 	}
 

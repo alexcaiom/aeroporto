@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.dao.AviaoDAO;
+import com.model.Assento;
 import com.model.Aviao;
 import com.model.Voo;
 
@@ -15,6 +16,10 @@ public class AviaoBO implements Serializable{
 	public void inserir(Aviao aviao) {
 		aviaoDAO.beginTransaction();
 		aviaoDAO.inserir(aviao);
+		for (Assento assento : aviao.getAssentos()) {
+			assento.setAviao(aviao);
+		}
+		aviaoDAO.atualizar(aviao);
 		aviaoDAO.commitAndCloseTransaction();
 	}
 
